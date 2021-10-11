@@ -1,0 +1,141 @@
+#include "course.h"
+bool course::check(string namecourse)
+{	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	//  check if namecourse exists or not , if exist ---> (return 1),else ---> (return 0)  //
+	/////////////////////////////////////////////////////////////////////////////////////////
+	for (int i = 0; i < one_course.size(); i++) {
+		if (one_course[i].nameCourse == namecourse)
+			return 1;
+	}
+	return 0;
+}
+int course::get_courseInfo(int i)
+{
+	///////////////////////////
+	//   get info of course  //
+	///////////////////////////
+	string code, nameCourse, degree;	
+	string _hour ;
+	int hour;
+		cout << " Please Enter Info Of Course No " << (i + 1) << endl;
+		cout << " - Name Of Course :  ";
+		if (_ok != 1) { cin.ignore(); }		// without it will make mistake
+		getline(cin, nameCourse);
+		bool b = check(nameCourse);		//  check if namecourse exists or not , if exist ---> (b=1),else ---> (b=0) 
+		if (b == 1) {	// this mean that namesourse exists
+			cout << " You Have Entered This Coures Before, Press Any Key To Contiune  " << endl << endl;
+			_ok = 1;	
+			return 0;	// why return 0 , because I use this function (get_courseInfo) to calculate total hour ---> ( 0 ---> hour of course)
+		}
+		else {
+			cout << " - Code Of Course :  ";
+			getline(cin, code);
+			bool hour_ok = 0;	// this variable if hour is correct ---> (hour >= 1 || hour <= 3) ---> (hour_ok = 1) , else ---> (hour_ok = 0)  
+			while (!hour_ok) {
+				cout << " - Number Of Hour :  ";
+				cin >> _hour;
+				hour = convert_str2int(_hour);	// turn hour from string to int
+				if (hour < 1 || hour > 3) {	// that mean that hour is wrong
+					cout << endl << "  Your Enter Wrong Input, Make Sure From Your Input ^_^ " << endl << endl;
+				}
+				else {	// ---> (hour_ok = 1) and break while
+					hour_ok = 1;
+				}
+			}
+			cout << " - Degree :  ";
+			cin >> degree;
+			cout << endl;
+			one_course.push_back({ code,hour,nameCourse,degree });	// push info of course in vector
+			return hour;	// return hour , to calculate total hour
+	}
+}
+void course::add_course(int num_course)
+{
+	// take num of course , and in every time take info of course 
+	for (int i = 0; i < num_course; i++) {
+		total_hour+=get_courseInfo(i);	// the function "get_courseInfo" return hour
+	}
+}
+float course::get_gpa()
+{
+	///////////////////////
+	//   calculate GPA  //
+	//////////////////////
+	float gpa = 0, real_degree = 0;		// in variable (real_degree) store in it value of ()
+	int total_hour = 0;
+	for (int i = 0; i < one_course.size(); i++) {
+		if (one_course[i].degree == "A+"|| one_course[i].degree == "a+") real_degree = 4.00;
+		else if (one_course[i].degree == "A"|| one_course[i].degree == "a") real_degree = 3.80;
+		else if (one_course[i].degree == "A-"|| one_course[i].degree == "a-") real_degree = 3.60;
+		else if (one_course[i].degree == "B+"|| one_course[i].degree == "b+") real_degree = 3.40;
+		else if (one_course[i].degree == "B"|| one_course[i].degree == "b") real_degree = 3.20;
+		else if (one_course[i].degree == "B-"|| one_course[i].degree == "b-") real_degree = 3.00;
+		else if (one_course[i].degree == "C+"|| one_course[i].degree == "c+") real_degree = 2.80;
+		else if (one_course[i].degree == "C"|| one_course[i].degree == "c") real_degree = 2.60;
+		else if (one_course[i].degree == "C-"|| one_course[i].degree == "c-") real_degree = 2.40;
+		else if (one_course[i].degree == "D+"|| one_course[i].degree == "d+") real_degree = 2.20;
+		else if (one_course[i].degree == "D"|| one_course[i].degree == "d") real_degree = 2.00;
+		else if (one_course[i].degree == "D-"|| one_course[i].degree == "d-") real_degree = 1.80;
+		gpa += (real_degree * one_course[i].hour);
+		total_hour += one_course[i].hour;
+	}
+	return (gpa / float(total_hour));
+}
+void course::print()
+{
+	////////////////////////////////////////////////////////////////////
+	//   print info of all of courses one by one ("namecourse","code","hour","degree")  //
+	////////////////////////////////////////////////////////////////////
+	for (int i = 0; i < one_course.size(); i++) {
+		cout << " Course No " << (i+1) << endl;
+		cout << " - Name Of Course :  " << one_course[i].nameCourse << endl;
+		cout << " - Code Of Course :  " << one_course[i].code << endl;
+		cout << " - Number Of Hour :  " << one_course[i].hour << endl;
+		cout << " - Degree :  " << one_course[i].degree << endl << endl;
+	}
+}
+int course::num_course()
+{
+	// vector of struct ,all index include info of one course , size of vector is number of courses 
+	return one_course.size();
+}
+int course::tot_hour()
+{
+	// calculate total_hour from function return "get_courseInfo"
+	return total_hour;
+}
+int course::num_of_course(string namecourse)
+{
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// in this function check if the student has this course or not , if yes ---> (cnt++) , number of student which register in a certain course //
+	//														and return value																	 // 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	for (int i = 0; i < one_course.size(); i++) {
+		if (one_course[i].nameCourse == namecourse) {
+			return 1;
+		}
+	}
+	return 0;
+}
+void course::remove(string namecourse)
+{
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//		 in this function check if the student has this course or not, if yes ---> (remove this course)  //
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	bool ok = 0;
+	for (int i = 0; i < one_course.size(); i++)
+	{
+		if (one_course[i].nameCourse == namecourse) {
+			ok = 1;
+			one_course.erase(one_course.begin()+(i));
+			break;
+		}
+	}
+	if (ok == 1) {
+		cout << endl<<"  The Name Exists, And Remove Course (: , " ;
+	}
+	else {
+		cout <<endl<< "  The Name Exists, But The Course Does Not Exist ): \a, ";
+	}
+}

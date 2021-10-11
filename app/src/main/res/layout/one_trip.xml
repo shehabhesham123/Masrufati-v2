@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/frame"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_trip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/OneTrip_Padding"
+        android:background="@drawable/frame"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/white_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/OneTrip_ImageView_Setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:focusable="true"
+            tools:ignore="UnusedAttribute" />
+
+
+        <TextView
+            android:id="@+id/OneTrip_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            android:text="@string/initial_sentence_in_trip"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/OneTrip_TextSize1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/OneTrip_TextView_InitialLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/OneTrip_TextView_Duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/OneTrip_TextSize2"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/OneTrip_TextView_InitialLocation"
+            app:layout_constraintStart_toEndOf="@id/OneTrip_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="two days ago, " />
+
+        <TextView
+            android:id="@+id/OneTrip_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/OneTrip_TextSize1"
+            android:text="@string/initial_location_sentence"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_Duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/OneTrip_TextView_FinalLocation"/>
+
+        <TextView
+            android:id="@+id/OneTrip_TextView_InitialLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Assiut, "
+            android:drawableStart="@drawable/ic_my_location"
+            android:drawablePadding="@dimen/One_Trip_Drawable_Padding"
+            android:fontFamily="@font/bad_script"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/OneTrip_TextSize2"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_Duration"
+            app:layout_constraintStart_toEndOf="@id/OneTrip_2"
+            app:layout_constraintBottom_toTopOf="@id/OneTrip_TextView_FinalLocation"/>
+
+
+        <TextView
+            android:id="@+id/OneTrip_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/OneTrip_TextSize1"
+            android:text="@string/finial_location_sentence"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_InitialLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/OneTrip_TextView_Distance"/>
+
+        <TextView
+            android:id="@+id/OneTrip_TextView_FinalLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Al-Ahly Bank, "
+            android:fontFamily="@font/bad_script"
+            android:textStyle="bold"
+            android:drawablePadding="@dimen/One_Trip_Drawable_Padding"
+            android:drawableStart="@drawable/ic_location"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/OneTrip_TextSize2"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_InitialLocation"
+            app:layout_constraintStart_toEndOf="@id/OneTrip_3"
+            app:layout_constraintBottom_toTopOf="@id/OneTrip_TextView_Distance"/>
+
+        <TextView
+            android:id="@+id/OneTrip_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/OneTrip_TextSize1"
+            android:text="@string/distance_sentence"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_FinalLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/OneTrip_TextView_Distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            tools:text="45"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/OneTrip_TextSize2"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/OneTrip_4"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_FinalLocation"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/OneTrip_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bad_script"
+            android:text="@string/kilometer"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/OneTrip_TextSize1"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/OneTrip_TextView_Distance"
+            app:layout_constraintTop_toBottomOf="@id/OneTrip_TextView_FinalLocation"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

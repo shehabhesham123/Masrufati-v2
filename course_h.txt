@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+#include <conio.h>	// this library to (_getch)
+using namespace std;
+struct _course {	// this struct include info of course
+	string code;	
+	int hour;	
+	string nameCourse;	
+	string degree;	
+};
+class course {	
+private:
+	vector<_course>one_course;	// vector of struct , every index in vector include ("code","hour","namecourse","degree") , and this vector include all courses to one student
+	int total_hour = 0;	// total hour to all courses
+	int _ok = 0;	// this variable to if name of course exists before ---> (_ok =0) to do not make (cin.ignore())
+	int get_courseInfo(int i);	// in this function take info of course ("code","hour","namecourse","degree")
+	int convert_str2int(string num) {	// in this function turn string int
+		int _num = 0;
+		//////////////////////////
+		// turn string to int  //
+		/////////////////////////
+		for (int i = 0; i < num.size(); i++) {
+			_num *= 10;
+			_num += num[i] - '0';
+		}
+		return _num;
+	}
+public:
+	void add_course(int num_course);	// here , take num of courses , and in this function (get_courseInfo) in which in every time take info of course
+	float get_gpa();	// calculate gpa
+	void print();	// print info of student ("name","gpa","num of courses","total hours","course info")
+	int num_course();	//calculate number of course to the student
+	int tot_hour();	// calculate number of hour to the student
+	bool check(string namecourse);	// in this function check if name of course exists or not
+	int num_of_course(string namecourse);	// in this function check if the student has this course or not , if yes ---> (cnt++) , number of student which register in a certain course 
+	void remove(string namecourse);	// in this function check if the student has this course or not, if yes ---> (remove this course)
+};

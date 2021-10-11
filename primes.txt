@@ -1,0 +1,135 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+const int N = 1e6;
+
+											//Prime
+bool check_prime(ll n) {
+	for (ll i = 2; i*i <= n; i++)
+		if (n%i == 0)
+			return 0;
+	return 1;
+}
+
+											//Divisors 
+void print_div(ll n) {
+	for (ll i = 1; i*i < n; i++)
+		if (i*i == n)cout << i << endl;
+		else if (n%i == 0)
+			cout << i << ' ' << n / i << ' ';
+}
+
+// Generates all the prime divisors of the numbers from 1 to n.
+vector<int> primeDivs[N];
+void generatePrimeDivisors(int n) {
+	for (int i = 2; i <= n; ++i) {
+		if (primeDivs[i].size()) continue;
+
+		for (int j = i; j <= n; j += i) {
+			primeDivs[j].push_back(i);
+		}
+	}
+}
+
+// Generates all the divisors of the numbers from 1 to n.
+vector<int> divs[N];
+void generateDivisors(int n) {
+	for (int i = 1; i <= n; ++i) {
+		for (int j = i; j <= n; j += i)
+			divs[j].push_back(i);
+	}
+}
+
+										//Sieve
+bool prime[N];
+// sieve check all primes numbers from 1 to N  O(Nlog N)
+void  sieve_v1() {
+	for (int i = 0; i < N; i++) {
+		prime[i] = 1;
+	}
+	prime[0] = prime[1] = 0;
+	for (int i = 2; i < N; i++) {
+		if (prime[i]) {
+			for (int j = i * 2; j < N; j += i) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+//very fast less than Nlog N
+void  sieve_v2() {
+	for (int i = 0; i < N; i++)
+		prime[i] = 1;
+	prime[0] = prime[1] = 0;
+	for (int i = 4; i < N; i += 2) {
+		prime[i] = 0;
+	}
+	for (int i = 3; i * i < N/*there will be only one prime number after sqrt(N)*/; i += 2) {
+		if (prime[i]) {
+			for (int j = i * i; j < N; j += i + i/* because you calculated multiplications of two*/) {
+				prime[j] = 0;
+			}
+		}
+	}
+}
+												//Factorization		
+
+// function to calculate all the prime factors and 
+// count of every prime factor
+void factorize(long long n) {
+	for (ll i = 2; i*i <= n; i++) {
+		int cnt = 0;
+		while (n%i == 0) {
+			cnt++;
+			n /= i;
+		}
+		if (cnt)
+			cout << i << ' ' << cnt << endl;
+	}
+	if (n > 1)
+		cout << n << ' ' << 1 << endl;
+}
+// Calculate Prime factors faster 
+void Prime_Factors_Faster(int n) {
+	vector<int>primes;
+	sieve_v2();
+	for (int i = 2; i < N; i++) {
+		if (prime[i]) {
+			primes.push_back(i);
+		}
+	}
+	// if number is prime
+	if (primes[n]) {
+		cout << n << " " << 1 << endl;
+		return;
+	}
+	int idx = 0;
+	while (idx < primes.size() && primes[idx] * primes[idx] <= n) {
+		int cnt = 0;
+		while (n % primes[idx] == 0) {
+			n /= primes[idx];
+			cnt++;
+		}
+		if (cnt) cout << primes[idx] << " " << cnt << endl;
+		idx++;
+	}
+	if (n > 1) {
+		cout << n << " " << 1 << endl;
+	}
+}
+
+//// number of divisors 
+/*
+	N=a^e1*b^e2*c^e3
+	then number of divisors is (e1+1)*(e2+1)*(e3+1)
+*/
+vector<int> MonInverseRange(int p) {
+	vector<int>inv(p);
+	for (int i = 2; i < p; i++) {
+		inv[i] = (p - (p / i)*inv[p%i] % p) % p;
+	}
+	return inv;
+}
+int main() {
+
+}

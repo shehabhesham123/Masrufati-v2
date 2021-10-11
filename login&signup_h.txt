@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+#include <stdlib.h>  //this library to ("cls")
+#include <conio.h>  //this library to (_getch)
+using namespace std;
+struct informatin {		//this struct include info the user
+	string username;	
+	string mail;
+	string password;
+	int state = 0;	// 0 if student && 1 if admin  
+};
+class logIn_signUp {
+private:
+	vector<informatin> p;	// vector of struct , every index of vector include ("username","gmail","password","state")
+	void delay(int s)		// delay 
+	{
+		for (int i = 0; i < s * 100000000; i++) {
+			int x = (s * 100000000) / 5;
+			if (i % x == 0)cout << ".";
+		}
+	}
+public:
+	void get_information(string your_choise, bool &logIn, bool &admin_ok, bool &student_ok);	// this function to sign up || sign in
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////																									   // the items of this function :
+	// your_choise : the user choose between log in || sign up if he choose log in ---> (your_choise="S"||"s") ,if he choose log in ---> (your_choise="L"||"l")															 //
+	// logIn : if the user want to log in ---> (logIn =1) else ---> (logIn =0) and (&,"pointer") because i want the value in main																						 //
+	// admin_ok : if the state of user is admin ---> (admin_ok=1) else ---> (admin_ok =0) and (&,"pointer") because i want the value in main , i make this value becouse admin has some specifications more than student //
+	// student_ok : if the state of user is student ---> (student_ok=1) else ---> (student_ok=0) and (&,"pointer") because i want the value in main																		 //
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+};

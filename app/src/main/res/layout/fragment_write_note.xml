@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/white_background"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:id="@+id/WriteNoteFragment_LinearLayout_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/WriteNoteFragment_LinearLayout_background_Padding">
+
+        <ImageView
+            android:id="@+id/WriteNoteFragment_ImageView_Done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_done_24"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/WriteNoteFragment_ImageView_Done_Margin"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ConstraintLayout_Contain_Color_Padding">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/WriteNoteFragment_CardView_blue"
+                android:layout_width="@dimen/CardView_Color_Width"
+                android:layout_height="@dimen/CardView_Color_Height"
+                app:cardBackgroundColor="@android:color/holo_blue_bright"
+                app:cardCornerRadius="@dimen/WriteNoteFragment_CardView_blue_cardCornerRadius"
+                app:cardElevation="@dimen/WriteNoteFragment_CardView_blue_cardElevation"
+                android:layout_margin="@dimen/WriteNoteFragment_CardView_blue_Margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/WriteNoteFragment_CardView_gray"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/WriteNoteFragment_CardView_gray"
+                android:layout_width="@dimen/CardView_Color_Width"
+                android:layout_height="@dimen/CardView_Color_Height"
+                app:cardCornerRadius="@dimen/WriteNoteFragment_CardView_gray_cardCornerRadius"
+                app:cardElevation="@dimen/WriteNoteFragment_CardView_gray_cardElevation"
+                app:cardBackgroundColor="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/WriteNoteFragment_CardView_blue"
+                app:layout_constraintStart_toEndOf="@id/WriteNoteFragment_CardView_white"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/WriteNoteFragment_CardView_white"
+                android:layout_width="@dimen/CardView_Color_Width"
+                android:layout_height="@dimen/CardView_Color_Height"
+                app:cardCornerRadius="@dimen/WriteNoteFragment_CardView_white_cardCornerRadius"
+                app:cardElevation="@dimen/WriteNoteFragment_CardView_white_cardElevation"
+                app:cardBackgroundColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/WriteNoteFragment_CardView_gray"
+                app:layout_constraintStart_toEndOf="@id/WriteNoteFragment_CardView_purple"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/WriteNoteFragment_CardView_purple"
+                android:layout_width="@dimen/CardView_Color_Width"
+                android:layout_height="@dimen/CardView_Color_Height"
+                app:cardCornerRadius="@dimen/WriteNoteFragment_CardView_purple_cardCornerRadius"
+                app:cardElevation="@dimen/WriteNoteFragment_CardView_purple_cardElevation"
+                app:cardBackgroundColor="@android:color/holo_purple"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/WriteNoteFragment_CardView_white"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/LinearLayout_Contain_Title_Body_Margin"
+            android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textCapSentences"
+                    android:id="@+id/WriteNoteFragment_TextInputEditText_Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/Note_title"
+                    android:textSize="@dimen/WriteNoteFragment_TextInputEditText_Title_Textsize"
+                    android:fontFamily="@font/abel"
+                    android:textColor="@android:color/black"
+                    android:backgroundTint="@android:color/transparent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                android:layout_marginTop="@dimen/WriteNoteFragment_TextInputEditText_Body_MarginTop">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/WriteNoteFragment_TextInputEditText_Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Note_body"
+                    android:gravity="start"
+                    android:textSize="@dimen/WriteNoteFragment_TextInputEditText_Body_Textsize"
+                    android:maxLength="1000"
+                    android:fontFamily="@font/abel"
+                    android:textColor="@android:color/black"
+                    android:padding="@dimen/WriteNoteFragment_TextInputEditText_Body_Padding"
+                    android:backgroundTint="@android:color/transparent"/>
+                <TextView
+                    android:id="@+id/WriteNoteFragment_TextView_NumOfLetters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="0/1000"
+                    android:layout_gravity="end"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

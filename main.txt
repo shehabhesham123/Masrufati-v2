@@ -1,0 +1,230 @@
+////////////////////////////////////////////////
+//		created by : shehab hesham anwer      //
+//		 from 18-8-2019   to 22-8-2019		  //
+////////////////////////////////////////////////
+				
+#include<bits/stdc++.h>	
+#include <stdlib.h>		// to cls
+#include"LogIn_LogUp.h" // class
+#include"admin.h"		// class
+using namespace std;
+typedef long long ll;
+int cnt = 0;	// this variable ti count number of student
+logIn_signUp s1;	// object of logIn&&signUp 
+admin a;		// object of admin
+string your_choise;	
+void delay(int s)	// Time delay
+{
+	for (int i = 0; i < s * 100000000; i++) {
+		int x = (s * 100000000) / 5;
+		if (i % x == 0)cout << ".";
+	}
+}
+void login_admin() {
+	bool end = 0;	// this variable if the user want to log out ---> (end = 1) and break while loop 
+	while (!end) {
+		system("CLS");
+		string choise;
+		cout << endl << " - Please Enter \'1\' If You Want To Add Student || Add Course To Student" << endl;
+		cout << " - Please Enter \'2\' If You Want To Remove Student" << endl;
+		cout << " - Please Enter \'3\' If You Want To Remove Course " << endl;
+		cout << " - Please Enter \'4\' If You Want To Print Degrees Of Student" << endl;
+		cout << " - Please Enter \'5\' If You Want To Print GPA Of Student" << endl;
+		cout << " - Please Enter \'6\' If You Want To Sort Students And Print Them" << endl;
+		cout << " - Please Enter \'7\' If You Want To print number of students who register in course " << endl;
+		cout << " - Please Enter \'8\' If You Want To Number Of Students " << endl;
+		cout << " - Please Enter \'0\' If You Want To Log Out" << endl << endl << " - Your Choise :  ";
+		cin >> choise;
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		if (choise != "0") {
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+		}
+
+		if (choise == "1") {
+			cnt+=a.add_student();
+		}
+		else if (choise == "2") {
+			string name;
+			cout << " - Please Enter Name Of Student " << endl << " - His Name :  ";
+			cin.ignore();
+			getline(cin, name);
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+			cnt-=a.remove(name);
+		}
+		else if (choise == "3") {
+			string namecourse, name;
+			cout << endl << " - Please Enter Name Of Student :  ";
+			cin.ignore();
+			getline(cin, name);
+			cout << endl << " - Please Enter Name Of Course :  ";
+			getline(cin, namecourse);
+			a.remove_course(name, namecourse);
+			cout << "  If You End Press Any Key ^_^" << endl;
+			_getch();
+		}
+		else if (choise == "4") {
+			string name;
+			cout << " - Please Enter Name Of Student " << endl << " - His Name :  ";
+			cin.ignore();
+			getline(cin, name);
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+			a.print_student(name);
+		}
+		else if (choise == "5") {
+			string name;
+			cout << " - Please Enter Name Of Student " << endl << " - His Name :  ";
+			cin.ignore();
+			getline(cin, name);
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+			if (a.get_gpa(name) != -1) {
+				cout << endl << endl << " - His GPA :  " << a.get_gpa(name) << endl << endl;
+				cout << "  If You End Press Any Key ^_^" << endl;
+				_getch();
+			}
+
+		}
+		else if (choise == "6") {
+			a.sort_students();
+			cout << "  If You End Press Any Key ^_^" << endl;
+			_getch();
+		}
+		else if (choise == "7") {
+			string q;
+			cout << endl << " - Please Enter Name Of Course " << endl;
+			cout <<" - Course Name :  " ;
+			cin.ignore();
+			getline(cin, q);
+			cout << endl << endl << " The Number Of Students Who Choose This Course :  ";
+			cout << a.number_student_which_register_in_course(q) << endl;
+			_getch();
+		}
+		else if (choise == "8") {
+			cout << " - Number Of Students :  " << cnt << endl << endl;
+			cout << "  If You End Press Any Key ^_^" << endl;
+			_getch();
+		}
+		else if (choise == "0") {
+			cout << endl << "\t\t\t\t   Logging out ";
+			delay(2);
+			break;
+		}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		system("CLS");
+		cout << endl << endl << "    If You Want To Contiune Press \'C\' || Any Key To End ^_^" << endl;
+		char c = _getch();
+		if (c == 'c' || c == 'C')end = 0;
+		else {
+			cout << endl << "\t\t\t\t   Logging out ";
+			delay(2);
+			end = 1;
+		}
+	}
+}
+void login_student() {
+	bool end = 0;
+	while (!end) {
+		system("CLS");
+		int choise;
+		cout << " - Please Enter \'1\' If You Want To Print Degrees Of Student" << endl;
+		cout << " - Please Enter \'2\' If You Want To Print GPA Of Student" << endl;
+		cout << " - Please Enter \'3\' If You Want To Sort Students And Print Them" << endl;
+		cout << " - Please Enter \'4\' If You Want To print number of students who register in course " << endl;
+		cout << " - Please Enter \'0\' If You Want To Log Out" << endl << endl << " - Your Choise :  ";
+		cin >> choise;
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		if (choise != 0) {
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+		}
+
+		if (choise == 1) {
+			string name;
+			cout << " - Please Enter Name Of Student " << endl << " - His Name :  ";
+			cin.ignore();
+			getline(cin, name);
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+			a.print_student(name);
+		}
+		else if (choise == 2) {
+			string name;
+			cout << " - Please Enter Name Of Student " << endl << " - His Name :  ";
+			cin.ignore();
+			getline(cin, name);
+			cout << endl << endl << endl << "\t\t\t\t  Please Wait, processing ";
+			delay(2);
+			system("CLS");
+			if (a.get_gpa(name) != -1) {
+				cout << endl << endl << " - His GPA :  " << a.get_gpa(name) << endl << endl;
+				cout << "  If You End Press Any Key ^_^" << endl;
+				_getch();
+			}
+
+		}
+		else if (choise == 3) {
+			a.sort_students();
+			cout << "  If You End Press Any Key ^_^" << endl;
+			_getch();
+		}
+		else if (choise == 4) {
+			string q;
+			cout << endl << " - Please Enter Name Of Course " << endl;
+			cout << " - Course Name :  ";
+			cin.ignore();
+			getline(cin, q);
+			cout << endl << endl << " The Number Of Students Who Choose This Course :  ";
+			cout << a.number_student_which_register_in_course(q) << endl;
+			_getch();
+		}
+		else if (choise == 0) {
+			cout << endl << "\t\t\t\t   Logging out ";
+			delay(2);
+			break;
+		}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		system("CLS");
+		cout << endl << endl << "    If You Want To Contiune Press \'C\' || Any Key To End ^_^" << endl;
+		char c = _getch();
+		if (c == 'c' || c == 'C')end = 0;
+		else {
+			cout << endl << "\t\t\t\t   Logging out ";
+			delay(2);
+			end = 1;
+		}
+	}
+}
+int main()
+{
+	while (1) {
+		bool signUp = 0, logIn = 0, admin_ok = 0, student_ok = 0;
+		system("CLS");
+
+		cout << "\t\t\t    Enter \'S\' To Sign Up || \'L\' To Log In" << endl << " - Your Choise :  ";
+		cin >> your_choise;
+		s1.get_information(your_choise, logIn, admin_ok, student_ok);	// this variable (&, pointer)
+		if (logIn && admin_ok) {
+			login_admin();
+		}
+		else if (logIn && student_ok) {
+			login_student();
+		}
+	}
+}

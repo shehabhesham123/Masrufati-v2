@@ -1,0 +1,236 @@
+#include "admin.h"
+int admin::add_student()	//add courses to certain student
+{
+	int retur = 0;
+	string name, choise;	
+	int num;
+	int ok = 0;		// if user choos '1' || '2' and the name is exist ---> (ok = 1) ,else ---> (ok = 2) 
+	cout << " - if you want to add student press \'1\' || \'2\' to add course " << endl << endl << " - Your Choise :  ";
+	cin >> choise;
+	system("CLS");
+	if (choise == "1") {
+		cout << " - Please Enter Name Of Student :  ";
+		cin.ignore();
+		getline(cin, name);
+		/////////////////////////////////////
+		//   check if name exist or not    //
+		/////////////////////////////////////
+		for (auto it : person) {
+			if (it.first == name) {
+				cout << endl<<endl<<endl << "\t\t\t  The Student Exists Before \a, It Will Out ";
+				delay(2);
+				cout << endl;
+				system("CLS");
+				return retur;
+			}
+		}
+		retur = 1;
+		ok = 1;
+	}
+	else if (choise == "2") {
+		cout << " - Please Enter Name Of Student :  ";
+		cin.ignore();
+		getline(cin, name);
+		/////////////////////////////////////
+		//   check if name exist or not    //
+		/////////////////////////////////////
+		for (auto it : person) {
+			if (it.first == name) {
+				cout << endl<<"  The Student Exists , Press Any Key To Contiune ^_^ " << endl;
+				_getch();
+				system("CLS");
+				cout << " - The Student :  " << name << endl ;
+				ok = 1;
+				break;
+			}
+		}
+	}
+	else { ok = 2; }
+
+	if (ok == 0) {	// this mean that the name does not exist
+		cout << endl<<endl<<endl<<"\t\t\t  The Student Does Not Exist \a, It Will Out " ; 
+		delay(2);
+		cout << endl;
+	}
+	else if (ok == 1) {		// this mean that the user choose '1' || '2' ,and the student exists
+		string number;
+		bool num_ok = 0;	// if num of courese which the user want to add correct ---> (num_ok =1)  else ---> (num_ok = 0) and loop 
+		while (!num_ok) {
+			cout << endl << " - Please Number Of Courses :  ";
+			cin >> number;
+			num = convert_str2int(number);	// turn string to int
+			if (num <= 0 || num >18) {	
+				cout << endl << "  Your Enter Wrong Input, Make Sure From Your Input ^_^ " << endl << endl;
+			}
+			else {
+				num_ok = 1;		// this mean that num is correct
+			}
+		}
+		system("CLS");
+		person[name].add_course(num);	// call function "add_course" in class "course" , it take num of course , and in it take info of the course
+		cout << endl << endl << endl << "\t\t\t\t    processing ";
+		delay(3);
+		if (person[name].tot_hour() > 18) {	// this mean that he has exceeded the specified number of hours , and this is wrong , and remove the student 
+			system("CLS");
+			cout << endl << endl << " You have exceeded the specified number of hours\a " << endl << endl;
+			cout << " The student will be deleted and re-written materials so that the number of hours is less than or equal to 18" << endl << endl;
+			person.erase(person.find(name));	// remove the student
+		}
+		else {		// this mean that every things are good ,print GPA
+			system("CLS");
+			cout << endl;
+			cout << " - His GPA :  " << person[name].get_gpa() << endl << endl;
+		}
+		cout << "  If You End Press Any Key ^_^" << endl;
+		_getch();
+	}
+	return retur;
+}
+int admin::remove(string name)
+{
+	int retur = 0;
+	bool ok = 0;	// if the name of student exist ---> (ok =1) and remove him , else ---> (ok=0) and print that the name does not exist
+	///////////////////////////////////////////////////////
+	//       check if the name of student exist or not   //
+	///////////////////////////////////////////////////////
+	for (auto it : person) {
+		if (it.first == name) {
+			retur = 1;
+			auto x = person.find(name);
+			person.erase(x);
+			ok = 1;
+			break;
+		}
+	}
+	if (ok == 1) {
+		cout << " operation accomplished successfully, Student Deleted" << endl << endl;
+		cout << "  If You End Press Any Key ^_^" << endl;
+		_getch();
+	}
+	else {
+		cout << endl << endl << endl << "\t\t\t  The Student Does Not Exist \a, It Will Out ";
+		delay(2);
+		cout << endl;
+	}
+	return retur;
+}
+void admin::print_student(string name)
+{
+	bool ok = 0;	// if the name of student exist ---> (ok =1) and print his info , else ---> (ok=0) and print that the name does not exist
+
+	for (auto it : person) {
+		if (it.first == name) {
+			cout << endl << " - His Name :  " << name << "\t GPA :  " << person[name].get_gpa() << endl;
+			cout << " Number Of Courses :  " << person[name].num_course();
+			cout << "\t total hour :  " << person[name].tot_hour() << endl << endl;
+			person[name].print();
+			cout << "  If You End Press Any Key ^_^" << endl;
+			_getch();
+			ok = 1;
+			break;
+		}
+	}
+	if (ok == 0) {
+		cout << endl << endl << endl << "\t\t\t  The Student Does Not Exist \a, It Will Out ";
+		delay(2);
+		cout << endl << endl;
+	}
+	
+}
+float admin::get_gpa(string name)
+{
+	bool ok = 0;	// if the name of student exist ---> (ok =1) and return his gpa , else ---> (ok=0) and print that the name does not exist and return -1
+	
+	for (auto it : person) {
+		if (it.first == name) {
+			return person[name].get_gpa();
+		}
+	}
+
+	if (ok == 0) {
+		cout << endl << endl << endl << "\t\t\t  The Student Does Not Exist \a, It Will Out ";
+		delay(2);
+		cout << endl << endl;
+		return -1;
+	}
+	
+}
+void admin::sort_students()
+{
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//                   in this function																		//
+	//	   first : make vector of pair (string , flaot) string ---> name of student , float ---> gpa of student //
+	//     second : make sort to this vector for gpa , if gpa is equal , com for name                           //
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	vector <pair<string, float>>v;
+	for (auto it : person) {
+		v.push_back({ it.first,it.second.get_gpa() });
+	}
+	// if size of vector is 0 ,this mean that there are no students
+	if (v.size() == 0) {
+		cout << endl << endl << endl << "\t\t\t   There Are No Students\a ,It Will Out ";
+		delay(2);
+		cout << endl << endl;
+	}
+	else {
+		//////////////
+		//   sort   //
+		//////////////
+		for (int i = 0; i < v.size(); i++) {
+			for (int j = i; j < v.size(); j++) {
+				if (v[i].second < v[j].second) {
+					swap(v[i].second, v[j].second);
+					swap(v[i].first, v[j].first);
+				}
+				else if (v[i].second == v[j].second) {
+					if (v[i].first > v[j].first) {
+						swap(v[i].first, v[j].first);
+					}
+				}
+			}
+		}
+		///////////
+		// print //
+		///////////
+		for (int i = 0; i < v.size(); i++) {
+			cout << " ( " << (i + 1) << " )" << endl;
+			cout << endl << " - His Name :  " << v[i].first << "\t GPA :  " << person[v[i].first].get_gpa() << endl;
+			cout << " Number Of Courses :  " << person[v[i].first].num_course();
+			cout << "\t total hour :  " << person[v[i].first].tot_hour() << endl << endl;
+			person[v[i].first].print();
+			cout << endl;
+		}
+	}
+}
+int admin::number_student_which_register_in_course(string coursename)
+{
+	/////////////////////////////////////////////////////////////////////////
+	// in this function , check every student does have this course or not //
+	//  if he has this course return 1 ("num_of_course")                   //
+	//     cnt ---> sum of students who choose this course                 //
+	/////////////////////////////////////////////////////////////////////////
+	int cnt = 0;
+	for (auto it : person) {
+		cnt+=it.second.num_of_course(coursename);
+	}
+	return cnt;
+}
+void admin::remove_course(string name,string namecourse)
+{
+	bool ok = 0;	// if this course exists with this student ---> remove , else print that the name does not exist 
+	
+	//////////////////////////////////////////////////////////////////
+	//       check if this course exists with this student or not   //
+	//////////////////////////////////////////////////////////////////
+	for (auto it : person) {
+		if (it.first == name) {
+			person[name].remove(namecourse);
+			ok = 1;
+			break;
+		}
+	}
+	if (ok == 0) {
+		cout <<endl<< "  The Name Does Not Exist ): ,\a ";
+	}
+}

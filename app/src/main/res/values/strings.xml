@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Masrufati</string>
+    <string name="BottomNavigationViewMenu_Trips">Trips</string>
+    <string name="BottomNavigationViewMenu_Notes">Notes</string>
+
+    <string name="initial_sentence_in_trip">"I made a short trip "</string>
+    <string name="initial_location_sentence">"and I was in "</string>
+    <string name="finial_location_sentence">"and my destination was "</string>
+    <string name="distance_sentence">"and the total cost is "</string>
+    <string name="kilometer">" EGP"</string>
+    <string name="on_this_day">" on this day"</string>
+    <string name="one_day_ago">" one day ago"</string>
+    <string name="two_days_ago">" two days ago"</string>
+    <string name="on">" on "</string>
+    <string name="noFound">No trips\n to view</string>
+
+    <string name="NewTripFragment_Button_Done_Text">Done</string>
+    <string name="FinalLocation">Final location</string>
+    <string name="InitialLocation">Initial location</string>
+    <string name="undo">Undo</string>
+    <string name="ModifiedSuccessfully">Modified successfully</string>
+    <string name="Error">An error may have occurred during the operation</string>
+    <string name="Error2">You don\'t make trip to return from it</string>
+    <string name="DeleteSuccessfully">Delete successfully</string>
+    <string name="NOT_TITLE">Total cost</string>
+    <string name="NOT_BODY1">"You made "</string>
+    <string name="NOT_BODY2">"trips that day and the total cost was "</string>
+    <string name="NOT_BODY3">EGP</string>
+    <string name="Error3">You enter invalid location</string>
+    <string name="Update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="Note_title">Title</string>
+    <string name="Note_body">Write your note ....</string>
+
+    <string name="CardReader">Card reader</string>
+    <string name="ReceivePrinter">Receive printer</string>
+    <string name="TouchScreen">Touch screen</string>
+    <string name="Dispenser">Dispenser</string>
+    <string name="Deposit">Deposit</string>
+    <string name="Other">Other</string>
+
+    <string name="AddedSuccessfully">record note successfully</string>
+    <string name="noFound2">No Notes</string>
+    <string name="messageDialog">You want to delete this note?</string>
+    <string name="yesDialog">Yes</string>
+    <string name="noDialog">Cancel</string>
+
+</resources>

@@ -1,0 +1,223 @@
+#include "LogIn_LogUp.h"
+void logIn_signUp::get_information(string your_choise, bool &logIn , bool &admin_ok , bool &student_ok )
+{
+	string username = "", mail = "", password = "", repassword = "", state = "";	
+	cin.ignore();
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	if (your_choise == "S" || your_choise == "s") {		// the user want to sign in
+		cout << endl<<endl<<endl << "\t\t\t\t    Please Wait ";
+		delay(2);
+		cout << endl << endl;
+		system("CLS");
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		cout << "  \" SIGN UP \"  " << endl << endl;   // beauty sentence
+		bool username_ok = 0;		// if the user name exists || the user does not write thing ---> ( username_ok = 0 ) else ---> ( username_ok = 1 )
+		while (!username_ok) {		
+			bool q = 0;		// this variable if username exists before ---> (q=1) in which print to user that the name that enter it exist brefore , and writes again
+			cout << " - Username :  ";
+			getline(cin, username);
+			for (int i = 0; i < p.size(); i++) {	// check if the username which the user enter it exists or not , if exist ---> (q=1) else ---> (q=0) 
+				if (p[i].username == username) {
+					q = 1;		// if exist ---> (q=1)
+					break;
+				}
+			}
+			if (q == 0&&username.size()!=0) { username_ok = 1; }	// if the username which the user enter it does not exist before and the user already wrote something --->(username_ok = 1) in which break while 
+			if (q) {	// that mean that the username which the user enter it exists before ,and print that , (username_ok = 0)
+				cout << endl<< " Username Already Exists ..... Choose Another Name \a" << endl << endl;
+			}
+			else if (username.size() == 0) { //that mean the the user does not write thing , and print that , (username_ok = 0)
+				cout <<endl<< " Error, You Do Not Write Username"<<endl<<endl;
+			}
+		}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			while (1) {		// this loop break when email is 1- there is not mistakes , 2- does not exists
+				cout << endl << " - Your  Gmail :  ";
+				getline(cin, mail);
+				if (mail.find("@gmail.com") > mail.size() || mail.find(" ") <= mail.size() || mail.find("@gmail.com") == 0|| mail.find("@gmail.com")+10<mail.size() || count(mail.begin(), mail.end(), '@') > 1) {	// if these conditions is met , the email is wrong ---> (mail_ok=0)
+					cout << endl << " Your Gmail Is Wrong ..... Make Sure Your Email \a" << endl;
+					continue;	// because Do not execute the things after him and repeat again  
+				}
+				bool s = 0;		// this variable if the email exists before --->(s=1) 
+				for (int i = 0; i < p.size(); i++) {
+					if (p[i].mail == mail) {
+						cout << endl << " Email Already Exists ..... Choose Another Email \a" << endl;
+						s = 1;
+					}
+				}
+				if (s == 1) {	// this mean is email exists before
+					continue;	
+				}
+
+				break;   // if this condition is met this mean that email is 1- there is not mistakes , 2- does not exists ,and break loop
+			}
+		
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		bool password_ok = 0;	// if the password is 1- strong 2-  Match ---> ( password_ok = 1) .else ---> ( password_ok = 0)
+		while (!password_ok) {
+			cout << endl << " - Password :  ";
+
+			////////////////////////////
+			// turn iiiii ---> *****  //
+			////////////////////////////
+			password.clear();
+			char a;
+			for (int i = 0; i >= 0; i++) {
+				a = _getch();
+				if (a == 13)break;
+				if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9')) {
+					password += a;
+					cout << "*";
+				}
+			}
+			cout << endl << endl << " - Re_password :  ";
+
+			////////////////////////////
+			// turn iiiii ---> *****  //
+			////////////////////////////
+			repassword.clear();
+			for (int i = 0; i >= 0; i++) {
+				a = _getch();
+				if (a == 13)break;
+				if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9')) {
+					repassword += a;
+					cout << "*";
+				}
+			}
+			cout << endl << endl;
+			if (password.size() < 7) {
+				cout << " The Password Is Weak ..... Must Be Greater Than 6 \a" << endl;
+			}
+			else if (password != repassword) {
+				cout << " Password Does Not Match .......  Make Sure Your Password \a" << endl;
+			}
+			else {		//this mean 1- strong 2- Match
+				password_ok = 1;
+			}
+		}
+		
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		bool state_ok = 0;	// the user should enter (s||S) or (A||a) ---> (state_ok = 1) else ---> (state_ok = 0) and loop
+		while (!state_ok) {
+			cout << "   Enter \'S\' To Student || \'A\' To Administrator  " << endl << " - Your Choise :  ";
+			cin >> state;
+			if (state == "A" || state == "a") {   // this mean that the user is admin ---> 1 
+				p.push_back({ username,mail,password ,1 }); // here push info in vector 
+				state_ok = 1;
+			}
+			else if (state == "S" || state == "s") {	// this mean that the user is student ---> 0
+				p.push_back({ username,mail,password ,0 });  // here push info in vector 
+				state_ok = 1;
+				student_ok = 1;
+			}
+			if (!state_ok) {		//the user should not enter (s||S) or (A||a) and enter any thing  wrong
+				cout <<endl<< " Your Input Is Wrong \a, Make Sure From Your Input " << endl << endl;
+			}
+		}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		////////////////////////////////
+		//		print user info       //
+		////////////////////////////////
+		cout << endl <<endl<<endl<< "\t\t   The Registration Is Done , Your Data Is Being Uploaded" ;
+		delay(2);
+		cout << endl << endl;
+		system("CLS");
+		cout << endl << " - Username :  " << username << endl;
+		cout << " - Email :  " << mail << endl;
+		cout << " - Password :  " << password << endl;
+		if (state == "A" || state == "a") {
+			cout << " - State :  Administrator" << endl;
+		}
+		else if (state == "S" || state == "s") {
+			cout << " - state :  Student" << endl;
+		}
+		cout << endl;
+		cout << "  If You End Press Any Key ^_^" << endl;
+		_getch();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	else if (your_choise == "L" || your_choise == "l") {     // the user want to sign in
+		cout << endl << endl << endl << "\t\t\t\t    Please Wait ";
+		delay(2);
+		cout << endl << endl;
+		logIn = 1;		//Already explained
+		system("CLS");
+		cout << "  \" LOG IN \"  " << endl << endl;
+		 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		int wrongs = 0;		// it make to do not make time limit , if wrongs >= 4 break
+		bool username_ok = 0, password_ok = 0;	// these varaibles if username is exist ---> (username_ok =1) , if password is ok ---> (password_ok =1)
+		while (1) {
+			if (!username_ok) {		// this make to if user enter username correct but password is wrong , do not order the user to write it again
+				cout << " - Username :  ";
+				getline(cin, username);
+				wrongs++;
+			}	
+			cout << endl << " - Password :  ";
+
+			////////////////////////////
+			// turn iiiii ---> *****  //
+			////////////////////////////
+			password.clear();
+			char a;
+			for (int i = 0; i >=0; i++) {
+				a = _getch();
+				if (a == 13)break;
+				if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9')) {
+					password += a;
+					cout << "*";
+				}
+			}
+			wrongs++;
+			cout << endl;
+			int idx = 0;	//this variable is to Determine if the user admin || student
+
+			////////////////////////////////////////////////////////////////
+			// here , check if user name and password is corrcet or not   //
+			////////////////////////////////////////////////////////////////
+			for (int i = 0; i < p.size(); i++) {
+				if (p[i].username == username) {
+					username_ok = 1;	// here , username is correct ,but password do not know
+					if (p[i].password == password) {
+						password_ok = 1;	//here , username ans password is correct 
+						idx = i;	// position of the user in vector
+						break;
+					}
+				}
+			}
+			if (password_ok && username_ok) {
+				if (p[idx].state == 1) {
+					admin_ok = 1;		//Already explained
+				}
+				else if (p[idx].state == 0) {
+					student_ok = 1;		//Already explained
+				}
+				cout << endl << endl << endl << "\t\t\t\t    Signing in ";
+				delay(2);
+				cout << endl << endl;
+				break;
+			}
+			else if (wrongs >= 4) {		// here Skip the specified number of wrongs , so we must break
+				cout << endl << endl << endl << "\t\t Warning , You Have Skipped The Number Of Errors ,The Program Will Out \a";
+				delay(2);
+				cout << endl << endl;
+				break;
+			}
+			else if (!password_ok && username_ok) cout << endl << " Password Does Not Match .......  Make Sure Your Password \a " <<endl;	
+			else cout <<endl << " Your Username Is Wrong ..... Make Sure Your Username \a" << endl<<endl;
+		}
+	}
+}

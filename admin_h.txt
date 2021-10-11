@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+#include <conio.h>	//  to (_getch)
+#include"course.h"	// include this class , because I make map of (string , class)
+using namespace std;
+class admin {
+private:
+	map<string, course> person ;	// (name of student , courses)
+	void delay(int s)	//delay
+	{
+		for (int i = 0; i < s * 100000000; i++) {
+			int x = (s * 100000000) / 5;
+			if (i % x == 0)cout << ".";
+		}
+	}
+	int convert_str2int(string num) {	// this function turn string to int
+		int _num = 0;
+		for (int i = 0; i < num.size(); i++) {
+			_num *= 10;
+			_num += num[i] - '0';
+		}
+		return _num;
+	}
+public:
+	int add_student();		// add courses to a certain student
+	int remove(string name);	// remove student
+	void print_student(string name);	// print info of student
+	float get_gpa(string name);	//print gpa to certain student
+	void sort_students();	// make sort to gpa if gpa is equal ---> sort to name
+	int number_student_which_register_in_course(string namecourse);	// count number of student who register in certain course
+	void remove_course(string name, string namecourse);		// remove course 
+};

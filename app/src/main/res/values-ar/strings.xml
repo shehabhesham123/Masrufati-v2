@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">مصروفاتى</string>
+    <string name="BottomNavigationViewMenu_Trips">رحلات</string>
+    <string name="BottomNavigationViewMenu_Notes">ملاحظات</string>
+
+    <string name="initial_sentence_in_trip">"لقد قمت برحلة "</string>
+    <string name="initial_location_sentence">"وكنت بداية الرحلة فى "</string>
+    <string name="finial_location_sentence">"وكانت وجهتى "</string>
+    <string name="distance_sentence">"والتكلفة الكلية كانت "</string>
+    <string name="kilometer">"ج.م"</string>
+    <string name="on_this_day">"فى هذا اليوم"</string>
+    <string name="one_day_ago">"من يوم ماضى "</string>
+    <string name="two_days_ago">"من يومين "</string>
+    <string name="on">" فى "</string>
+    <string name="noFound">لا توجد رحلات لعرضها</string>
+
+    <string name="NewTripFragment_Button_Done_Text">تم</string>
+    <string name="FinalLocation">الوجهه</string>
+    <string name="InitialLocation">مكان البداية</string>
+    <string name="undo">Undo</string>
+    <string name="ModifiedSuccessfully">تم التعديل بنجاح</string>
+    <string name="Error">ربما حدث خطا اثناء اجراء العملية </string>
+    <string name="Error2">لم تقم بأى عملية لكى تقوم بالعوده منها</string>
+    <string name="DeleteSuccessfully">تم الازالة بنجاح</string>
+    <string name="NOT_TITLE">التكلفة الكلية</string>
+    <string name="NOT_BODY1">"انت قمت ب "</string>
+    <string name="NOT_BODY2">"رحلات فى هذا اليوم وكانت التكلفة الكلية "</string>
+    <string name="NOT_BODY3">ج.م</string>
+    <string name="Error3">لقد ادخلت مكان خطا</string>
+    <string name="Update">تعديل</string>
+    <string name="delete">ازالة</string>
+    <string name="Note_title">العنوان</string>
+    <string name="Note_body">اكتب ملاحظاتك ....</string>
+
+    <string name="CardReader">وحدة الكروت</string>
+    <string name="ReceivePrinter">وحدة الاصالات</string>
+    <string name="TouchScreen">الشاشة</string>
+    <string name="Dispenser">وحدة الصرف</string>
+    <string name="Deposit">وحدة الايداع</string>
+    <string name="Other">اخرى</string>
+
+    <string name="AddedSuccessfully">تم تسجيل ملاحظتك بنجاح</string>
+    <string name="noFound2">لا توجد ملاحظات</string>
+    <string name="messageDialog">هل تريد مسح هذه الملاحظة؟</string>
+    <string name="yesDialog">نعم</string>
+    <string name="noDialog">الغاء</string>
+
+</resources>

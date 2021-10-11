@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/NewTripFragment_Padding"
+    android:paddingEnd="@dimen/NewTripFragment_Padding"
+    android:paddingTop="@dimen/NewTripFragment_Padding"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/white_background"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/NewTripFragment_TextInputEditText_InitialLocation_Margin"
+            app:boxStrokeWidth="1dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/NewTripFragment_TextInputEditText_InitialLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/InitialLocation"
+                android:drawableStart="@drawable/ic_my_location"
+                android:drawablePadding="@dimen/NewTripFragment_TextInputEditText_InitialLocation_drawablePadding"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/NewTripFragment_TextInputEditText_FinalLocation_Margin"
+            app:boxStrokeWidth="1dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/NewTripFragment_TextInputEditText_FinalLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/FinalLocation"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="@dimen/NewTripFragment_TextInputEditText_FinalLocation_drawablePadding"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/NewTripFragment_CardView_Kilometer_Margin"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/NewTripFragment_CardView_Kilometer_CardCornerRadius"
+            app:cardElevation="@dimen/NewTripFragment_CardView_Kilometer_CardElevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/NewTripFragment_CardView_Kilometer_LinearLayout_Padding">
+
+                <NumberPicker
+                    android:id="@+id/NewTripFragment_NumberPicker_Kilometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/NewTripFragment_Kilometer_Sentence_Margin"
+                    android:fontFamily="@font/abel"
+                    android:text="@string/kilometer"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/NewTripFragment_Kilometer_Sentence_TextSize"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/NewTripFragment_Button_Done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewTripFragment_Button_Done_Text"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
